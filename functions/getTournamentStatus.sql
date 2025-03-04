@@ -8,8 +8,8 @@ BEGIN
 
     SELECT 
         CASE 
-            WHEN start_date > CURDATE() THEN 'upcoming'
-            WHEN start_date = CURDATE() THEN 'ongoing'
+            WHEN start_date > NOW() THEN 'upcoming'
+            WHEN start_date <= NOW() AND start_date + INTERVAL 1 DAY > NOW() THEN 'ongoing'
             ELSE 'completed'
         END
     INTO status
